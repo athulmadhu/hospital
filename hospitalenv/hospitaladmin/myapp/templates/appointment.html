@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        @property --rotate {
+            syntax: "<angle>";
+            initial-value: 132deg;
+            inherits: false;
+        }
+
+        @keyframes spin {
+            0% {
+                --rotate: 0deg;
+            }
+
+            100% {
+                --rotate: 360deg;
+            }
+        }
+
+        body {
+            background: dimgrey;
+            min-height: 100vh;
+            background-image: linear-gradient(var(--rotate), #4d4b4b, #444448 43%, #3b3a3b);
+            animation: spin 2.5s linear infinite;
+        }
+
+        table {
+            position: relative;
+            background: white;
+            padding: 5px 25px 5px;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-spacing: 10px;
+            border-radius: 3%;
+        }
+
+        select,option{
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 195px;
+            border: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+
+        }
+
+        #heading {
+            border: 10px solid white;
+            border-radius: 10px;
+            background: dimgrey;
+        }
+
+        .labels {
+            padding: 5px 5px 5px;
+        }
+
+        input,textarea {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+           
+            border: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        #btn-1 {
+            width: 40%;
+            background: dimgray;
+            border: none;
+        }
+
+        #btn-1:hover {
+            background: darkslategrey;
+        }
+
+        #reset {
+            width: 30%;
+            background: gainsboro;
+        }
+
+        #reset:hover {
+            background: darkgray;
+        }
+    
+    </style>
+
+</head>
+
+<body>
+
+    <form action="" method="POST" >
+        {% csrf_token %}
+    <div style="margin-top: 50px;">
+        <table id="table1" >
+            <tr>
+                <td id="heading" colspan="3">
+                    <h1 style="text-align: center;">Patient Appointment Booking</h1>
+                </td>
+            </tr>
+            
+            <!--Patient name-->
+
+            <tr>
+                <td class="labels"><label for="patientname">Patient Name : </label></td>
+                <td><input id="patientname" type="text" name="patientname"></td>
+            </tr>
+
+          
+            
+            <tr>
+                <td class="labels"><label for="bdate"> Booking date : </label> </td>
+                <td><input type="date" id="bdate" name="appointmentdate" > </td>
+            </tr>
+
+            <tr>
+                <td class="labels"><label for="symptoms">Symptoms : </label> </td>
+                <td><input type="text" id="symptoms" name="symptoms"> </td>
+            </tr>
+            <tr>
+                <td class="labels"><label for="deptname">Department Name : </label></td>
+                <td><select name="departmentname" id="deptname">
+                    <option value="dept">department</option>
+                    <option value="dept">department</option>
+                    <option value="dept">department</option>
+                    </select></td>
+            </tr>
+            
+            <tr>
+                <td class="labels"><label for="doctorname">doctorname  : </label></td>
+                <td><select name="doctorname" id="doctorname">
+                    {% for i in data %}
+                    <option value="{{i.doctorname}}">{{i.doctorname}}</option>
+                    {% endfor %}
+                    </select></td>
+            </tr>
+           
+           
+          
+            <tr>
+                <td colspan="2"> <input type="submit" id="btn-1" />
+                    <input type="reset" id="reset">
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+</body>
+
+</html>

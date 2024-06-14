@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Departments</title>
+    {% block content %}
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            width: 400px;
+            text-align: center;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+    </style> -->
+    <style>
+        .department-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .department-list li {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        .department-list li:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hospital Departments</h1>
+        <ul class="department-list">
+            {% for i in dept %}
+            <li>{{i.departmentname}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endblock %}
+</body>
+</html>

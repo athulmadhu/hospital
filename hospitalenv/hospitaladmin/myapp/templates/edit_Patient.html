@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        @keyframes spin {
+            0% {
+                --rotate: 0deg;
+            }
+
+            100% {
+                --rotate: 360deg;
+            }
+        }
+
+        body {
+            background: dimgrey;
+            min-height: 100vh;
+            background-image: linear-gradient(var(--rotate), #4d4b4b, #444448 43%, #3b3a3b);
+            animation: spin 2.5s linear infinite;
+        }
+
+        table {
+            position: relative;
+            background: white;
+            padding: 5px 25px;
+            margin: auto;
+            text-align: center;
+            border-spacing: 10px;
+            border-radius: 3%;
+        }
+
+        #heading {
+            border: 10px solid white;
+            border-radius: 10px;
+            background: dimgrey;
+        }
+
+        .labels {
+            padding: 5px;
+        }
+
+        input, textarea {
+            font-family: "Roboto", sans-serif;
+            background: #f2f2f2;
+            border: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+        }
+
+        .btn {
+            width: 40%;
+            background: dimgray;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            color: white;
+        }
+
+        .btn:hover {
+            background: darkslategrey;
+        }
+
+        #reset {
+            background: gainsboro;
+        }
+
+        #reset:hover {
+            background: darkgray;
+        }
+        .td-gender {
+            width: 100%;
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div style="margin-top: 50px;">
+            <table>
+                <tr>
+                    <td id="heading" colspan="2">
+                        <h1>{{ context.user.patientname }}</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels"><label for="firstname">Name:</label></td>
+                    <td><input id="firstname" type="text" name="patientname" value="{{ context.user.patientname }}"></td>
+                </tr>
+                <tr>
+                    <td class="labels"><label>Gender:</label></td>
+                    <td class="td-gender">
+                        <input type="radio" id="gmale" name="gender" value="male" {% if context.user.gender == "male" %}checked{% endif %}><label for="gmale">Male</label>
+                        <input type="radio" id="gfemale" name="gender" value="female" {% if context.user.gender == "female" %}checked{% endif %}><label for="gfemale">Female</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels"><label for="address">Address:</label></td>
+                    <td><textarea id="address" name="address" cols="23" rows="7">{{ context.user.address }}</textarea></td>
+                </tr>
+                <tr>
+                    <td class="labels"><label for="dob">Date of Birth:</label></td>
+                    <td><input type="date" id="dob" name="dob" value="{{ context.user.dob|date:'Y-m-d' }}"></td>
+                </tr>
+                <tr>
+                    <td class="labels"><label for="mobile">Contact No:</label></td>
+                    <td><input id="mobile" type="text" name="mobile" value="{{context.user.mobile}}"></td>
+                </tr>
+                <tr>
+                    <td class="labels"><label for="email">Email:</label></td>
+                    <td><input id="email" type="email" name="email" value="{{context.user.email}}" ></td>
+                </tr>
+                <tr>
+                    <td class="labels"><label for="password">Password:</label></td>
+                    <td><input type="password" id="password" name="password" value="{{context.user.password}}"></td>
+                </tr>
+                <tr>
+                    <td class="labels"><label for="confirm">Confirm Password:</label></td>
+                    <td><input type="password" id="confirm" name="password1" value="{{context.user.password}}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="btn" id="btn-1" value="Submit">
+                        <input type="reset" class="btn" id="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>

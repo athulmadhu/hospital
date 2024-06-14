@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        @property --rotate {
+            syntax: "<angle>";
+            initial-value: 132deg;
+            inherits: false;
+        }
+
+        @keyframes spin {
+            0% {
+                --rotate: 0deg;
+            }
+
+            100% {
+                --rotate: 360deg;
+            }
+        }
+
+        body {
+            background: dimgrey;
+            min-height: 100vh;
+            background-image: linear-gradient(var(--rotate), #4d4b4b, #444448 43%, #3b3a3b);
+            animation: spin 2.5s linear infinite;
+        }
+
+        table {
+            position: relative;
+            background: white;
+            padding: 5px 25px 5px;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-spacing: 10px;
+            border-radius: 3%;
+        }
+
+
+        #heading {
+            border: 10px solid white;
+            border-radius: 10px;
+            background: dimgrey;
+        }
+
+        .labels {
+            padding: 5px 5px 5px;
+        }
+
+        input,textarea {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+           
+            border: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        #btn-1 {
+            width: 40%;
+            background: dimgray;
+            border: none;
+        }
+
+        #btn-1:hover {
+            background: darkslategrey;
+        }
+
+        #reset {
+            width: 30%;
+            background: gainsboro;
+        }
+
+        #reset:hover {
+            background: darkgray;
+        }
+    
+    </style>
+
+</head>
+
+<body>
+
+    <form method="POST">
+        {% csrf_token %}
+    <div style="margin-top: 50px;">
+        <table id="table1" >
+            <tr>
+                <td id="heading" colspan="3">
+                    <h1 style="text-align: center;">Patient Registration Form</h1>
+                </td>
+            </tr>
+            
+            <!--Patient name-->
+
+            <tr>
+                <td class="labels"><label for="firstname">Name : </label></td>
+                <td><input id="firstname" type="text" name="patientname"></td>
+            </tr>
+
+            <!--patient gender-->
+
+            <tr>
+                <td class="labels"><label for="gender">Gender : </label></td>
+                <td> <input type="radio" id="gmale" name="gender" value="male"><label for="gmale">Male</label>&nbsp;&nbsp;&nbsp;<input type="radio" id="Female" name="gender" value="female"> <label for="Female">Female</label></td>
+            </tr>
+
+            <!--patient address-->
+
+            <tr>
+                <td class="labels"><label for="address">Address : </label> </td>
+                <td><textarea name="address" id="address" cols="23" rows="7"></textarea> </td>
+            </tr>
+            <tr>
+                <td class="labels"><label for="dob">Date of Birh : </label> </td>
+                <td><input type="date" id="dob" name="dob"> </td>
+            </tr>
+
+            <!--contact number-->
+
+            <tr>
+                <td class="labels"><label for="lastname">Contact No : </label></td>
+                <td><input id="lastname" type="text" name="mobile"></td>
+            </tr>
+            <tr>
+                <td class="labels"><label for="email">Email : </label> </td>
+                <td><input id="email" type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td class="labels"><label for="password">Password : </label></td>
+                <td><input type="password" id="password" name="password"></td>
+            </tr>
+            <tr>
+                <td class="labels"><label for="confirm">Confirm password : </label></td>
+                <td><input type="password" id="password" name="password1"></td>
+            </tr>
+          
+            <tr>
+                <td colspan="2"> <input type="submit" id="btn-1" >
+                    <input type="reset" id="reset">
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+</body>
+
+</html>
